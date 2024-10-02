@@ -1,8 +1,19 @@
 <mat-grid-list cols="4"
     rowHeight="250px">
+    <mat-grid-tile [colspan]="3"
+        [rowspan]="2">
+
+        <ag-charts [options]="chartOptions">
+        </ag-charts>
+    </mat-grid-tile>
     @for (tile of tiles; track tile) {
     <mat-grid-tile [colspan]="tile.cols"
         [rowspan]="tile.rows"
         [style.background]="tile.color"></mat-grid-tile>
     }
+    <mat-grid-tile [colspan]="1"
+        [rowspan]="1">
+
+        add chart
+    </mat-grid-tile>
 </mat-grid-list>
