@@ -1,6 +1,17 @@
 :host {
     height: 100%;
 
+    mat-toolbar {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    mat-progress-bar {
+        position: absolute;
+        bottom: 0;
+    }
+
     main {
         display: block;
         height: calc(100% - 60px);
