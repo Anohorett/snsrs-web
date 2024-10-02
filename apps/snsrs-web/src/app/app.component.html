@@ -1,5 +1,10 @@
 <mat-toolbar>
     <span>App for test tasks</span>
+    <button mat-stroked-button
+        (click)="getData()">GetData</button>
+    @if ( sensorsStore.isLoading() ) {
+    <mat-progress-bar mode="query"></mat-progress-bar>
+    }
 </mat-toolbar>
 <main>
     <router-outlet></router-outlet>

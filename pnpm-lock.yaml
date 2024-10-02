@@ -35,6 +35,9 @@ dependencies:
   '@angular/router':
     specifier: ~18.2.0
     version: 18.2.6(@angular/common@18.2.6)(@angular/core@18.2.6)(@angular/platform-browser@18.2.6)(rxjs@7.8.1)
+  '@ngrx/signals':
+    specifier: 18.0.2
+    version: 18.0.2(@angular/core@18.2.6)(rxjs@7.8.1)
   ag-charts-angular:
     specifier: ^10.2.0
     version: 10.2.0(@angular/common@18.2.6)(@angular/core@18.2.6)(ag-charts-community@10.2.0)
@@ -3868,6 +3871,20 @@ packages:
       '@emnapi/runtime': 1.2.0
       '@tybys/wasm-util': 0.9.0
     dev: true
+
+  /@ngrx/signals@18.0.2(@angular/core@18.2.6)(rxjs@7.8.1):
+    resolution: {integrity: sha512-FXmcY2cmkbhZtg9k8Ntq69SyelGmmb6fWtdButH4T8GGFH0o3f1FZTR829j4ynphy8SzuDhD/pzrnpWcV481oQ==}
+    peerDependencies:
+      '@angular/core': ^18.0.0
+      rxjs: ^6.5.3 || ^7.4.0
+    peerDependenciesMeta:
+      rxjs:
+        optional: true
+    dependencies:
+      '@angular/core': 18.2.6(rxjs@7.8.1)(zone.js@0.14.10)
+      rxjs: 7.8.1
+      tslib: 2.7.0
+    dev: false
 
   /@ngtools/webpack@18.2.6(@angular/compiler-cli@18.2.6)(typescript@5.5.4)(webpack@5.94.0):
     resolution: {integrity: sha512-7HwOPE1EOgcHnpt4brSiT8G2CcXB50G0+CbCBaKGy4LYCG3Y3mrlzF5Fup9HvMJ6Tzqd62RqzpKKYBiGUT7hxg==}
