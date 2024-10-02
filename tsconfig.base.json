@@ -16,7 +16,9 @@
         "baseUrl": ".",
         "paths": {
             "@snsrs-web/dashboard": ["libs/dashboard/src/index.ts"],
-            "@snsrs-web/shared-ui": ["libs/shared/ui/src/index.ts"]
+            "@snsrs-web/shared-ui": ["libs/shared/ui/src/index.ts"],
+            "@snsrs-web/shared/constants": ["libs/shared/ui/src/constants"],
+            "@snsrs-web/shared/interfaces": ["libs/shared/ui/src/interfaces"]
         }
     },
     "exclude": ["node_modules", "tmp"]

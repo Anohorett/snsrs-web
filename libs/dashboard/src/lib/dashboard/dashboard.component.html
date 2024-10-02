@@ -1,1 +1,8 @@
-<p>dashboard works!</p>
+<mat-grid-list cols="4"
+    rowHeight="250px">
+    @for (tile of tiles; track tile) {
+    <mat-grid-tile [colspan]="tile.cols"
+        [rowspan]="tile.rows"
+        [style.background]="tile.color"></mat-grid-tile>
+    }
+</mat-grid-list>
