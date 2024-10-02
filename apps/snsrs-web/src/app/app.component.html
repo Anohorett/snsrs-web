@@ -1,7 +1,14 @@
 <mat-toolbar>
     <span>App for test tasks</span>
-    <button mat-stroked-button
-        (click)="getData()">GetData</button>
+    <section class="example-section">
+        <mat-slide-toggle
+            [checked]="sensorsStore.isEditMode()"
+            (change)="toggleEditMode($event)"
+        >
+            Edit mode
+        </mat-slide-toggle>
+    </section>
+    <button mat-stroked-button (click)="getData()">GetData</button>
     @if ( sensorsStore.isLoading() ) {
     <mat-progress-bar mode="query"></mat-progress-bar>
     }

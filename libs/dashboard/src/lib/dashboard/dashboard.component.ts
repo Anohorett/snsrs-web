@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { SensorsDataStore } from '@snsrs-web/data-access';
+import { ChartComponent } from '@snsrs-web/shared-ui';
 import { rainbowColors } from '@snsrs-web/shared/constants';
 import { GridTile } from '@snsrs-web/shared/interfaces';
-import { AgCharts } from 'ag-charts-angular';
 import { AgChartOptions } from 'ag-charts-community';
 
 // Chart Options Type Interface
@@ -11,12 +12,12 @@ import { AgChartOptions } from 'ag-charts-community';
 @Component({
     selector: 'lib-dashboard',
     standalone: true,
-    imports: [CommonModule, MatGridListModule, AgCharts],
+    imports: [CommonModule, ChartComponent, MatGridListModule],
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-    chartOptions: AgChartOptions;
+    readonly sensorsStore = inject(SensorsDataStore);
     tiles: GridTile[] = [
         // {
         //     color: rainbowColors.red,
@@ -39,6 +40,7 @@ export class DashboardComponent {
             rows: 2
         }
     ];
+    chartOptions: AgChartOptions;
 
     constructor() {
         this.chartOptions = {

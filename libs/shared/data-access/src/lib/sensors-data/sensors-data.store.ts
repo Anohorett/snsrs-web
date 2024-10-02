@@ -9,6 +9,9 @@ export const SensorsDataStore = signalStore(
     withState(initialSensorsDataState),
     withMethods(
         (store, sensorsDataApiService = inject(SensorsDataApiService)) => ({
+            setIsEditMode(isEditMode: boolean) {
+                patchState(store, { isEditMode });
+            },
             async getPoints(): Promise<void> {
                 patchState(store, { isLoading: true });
 
