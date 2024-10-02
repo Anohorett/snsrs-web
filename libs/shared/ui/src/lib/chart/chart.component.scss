@@ -1,0 +1,15 @@
+:host {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.close-btn {
+    margin: 8px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: rgb(202, 202, 202);
+
+    z-index: 2;
+}
