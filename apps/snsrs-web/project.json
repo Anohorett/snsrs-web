@@ -8,12 +8,16 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/snsrs-web",
         "index": "apps/snsrs-web/src/index.html",
         "main": "apps/snsrs-web/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/snsrs-web/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -22,7 +26,10 @@
             "input": "apps/snsrs-web/public"
           }
         ],
-        "styles": ["apps/snsrs-web/src/styles.scss"],
+        "styles": [
+          "@angular/material/prebuilt-themes/cyan-orange.css",
+          "apps/snsrs-web/src/styles.scss"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -75,7 +82,9 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/snsrs-web/jest.config.ts"
       }
