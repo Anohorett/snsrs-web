@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Input,
+    Output,
+    output
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AgCharts } from 'ag-charts-angular';
@@ -19,4 +26,7 @@ export class ChartComponent {
 
     @Input({ required: true })
     chartOptions: AgChartOptions = {};
+
+    @Output()
+    closeChart = new EventEmitter();
 }

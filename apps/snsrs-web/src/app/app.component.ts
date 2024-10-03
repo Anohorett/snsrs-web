@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -18,7 +19,8 @@ import { SensorsDataStore } from '@snsrs-web/data-access';
         MatProgressBarModule,
         MatSlideToggleModule,
         MatToolbarModule,
-        RouterModule
+        RouterModule,
+        ReactiveFormsModule
     ],
     selector: 'app-root',
     templateUrl: './app.component.html',

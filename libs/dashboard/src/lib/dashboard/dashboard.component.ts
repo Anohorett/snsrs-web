@@ -1,45 +1,40 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
 import { SensorsDataStore } from '@snsrs-web/data-access';
 import { ChartComponent } from '@snsrs-web/shared-ui';
 import { rainbowColors } from '@snsrs-web/shared/constants';
 import { GridTile } from '@snsrs-web/shared/interfaces';
 import { AgChartOptions } from 'ag-charts-community';
+import { ChartSettingsModalComponent } from '../chart-settings-modal/chart-settings-modal.component';
 
 // Chart Options Type Interface
 
 @Component({
     selector: 'lib-dashboard',
     standalone: true,
-    imports: [CommonModule, ChartComponent, MatGridListModule],
+    imports: [
+        ChartComponent,
+        CommonModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatGridListModule,
+        MatIconModule
+    ],
     templateUrl: './dashboard.component.html',
-    styleUrl: './dashboard.component.scss'
+    styleUrl: './dashboard.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent {
+    readonly dialog = inject(MatDialog);
     readonly sensorsStore = inject(SensorsDataStore);
-    tiles: GridTile[] = [
-        // {
-        //     color: rainbowColors.red,
-        //     cols: 3,
-        //     rows: 2
-        // },
-        {
-            color: rainbowColors.green,
-            cols: 1,
-            rows: 2
-        },
-        {
-            color: rainbowColors.blue,
-            cols: 2,
-            rows: 2
-        },
-        {
-            color: rainbowColors.yellow,
-            cols: 2,
-            rows: 2
-        }
-    ];
+    readonly MAX_CHARTS_LENGHT = 4;
+    chartArray: { tile: GridTile; options: AgChartOptions }[] = [];
+
+    cdr = inject(ChangeDetectorRef);
     chartOptions: AgChartOptions;
 
     constructor() {
@@ -74,5 +69,28 @@ export class DashboardComponent {
                 }
             ]
         };
+    }
+
+    addChart() {
+        const dialogRef = this.dialog.open(ChartSettingsModalComponent, {
+            height: '50%',
+            width: '40%'
+        });
+
+        dialogRef.afterClosed().subscribe((result) => {
+            console.log(`Dialog result: ${result}`);
+
+            this.chartArray.push({
+                tile: { color: rainbowColors.purple, cols: 2, rows: 2 },
+                options: this.chartOptions
+            });
+
+            console.log(this.chartArray);
+            this.cdr.markForCheck();
+        });
+    }
+
+    closeChart(index: number) {
+        this.chartArray.splice(index, 1);
     }
 }

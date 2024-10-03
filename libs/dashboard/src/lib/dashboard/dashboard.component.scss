@@ -2,7 +2,23 @@
     display: block;
     height: 100%;
 
+    padding: 16px;
+
     mat-grid-tile {
         display: block;
+    }
+
+    .add-btn {
+        position: absolute;
+        z-index: 1;
+        right: 48px;
+        bottom: 48px;
+
+        transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+        &.centered {
+            right: 50%;
+            bottom: 50%;
+        }
     }
 }

@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Chart settings</h2>
+<mat-dialog-content>
+    <form [formGroup]="chartForm">
+        <mat-form-field>
+            <mat-label>First name</mat-label>
+            <input
+                matInput
+                id="first-name"
+                type="text"
+                formControlName="firstName"
+            />
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close>Apply</button>
+</mat-dialog-actions>
