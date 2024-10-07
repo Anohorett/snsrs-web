@@ -1,14 +1,8 @@
 import { CommonModule } from '@angular/common';
-import {
-    ChangeDetectionStrategy,
-    Component,
-    EventEmitter,
-    Input,
-    Output,
-    output
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, EventEmitter, input, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { SensorsData } from '@snsrs-web/data-access/interfaces';
 import { AgCharts } from 'ag-charts-angular';
 import { AgChartOptions } from 'ag-charts-community';
 
@@ -24,9 +18,17 @@ export class ChartComponent {
     @Input()
     isEditMode = false;
 
-    @Input({ required: true })
-    chartOptions: AgChartOptions = {};
+    // chartOptions: AgChartOptions = {};
+    chartOptions = input.required<AgChartOptions>();
 
     @Output()
     closeChart = new EventEmitter();
+
+    datas = input<SensorsData[]>();
+
+    constructor() {
+        effect(() => {
+            console.log(`The current count is: ${this.datas()}`);
+        });
+    }
 }

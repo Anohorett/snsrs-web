@@ -1,10 +1,11 @@
 <mat-grid-list cols="4" rowHeight="250px">
-    @for (chart of chartArray; track chart; let idx = $index) {
+    @for (chart of chartArray(); track chart; let idx = $index) {
     <mat-grid-tile [colspan]="chart.tile.cols" [rowspan]="chart.tile.rows">
         <lib-chart
             [chartOptions]="chart.options"
             [isEditMode]="sensorsStore.isEditMode()"
-            (click)="closeChart(idx)"
+            [datas]="sensorsStore.sensorsData()"
+            (closeChart)="closeChart(idx)"
         ></lib-chart>
     </mat-grid-tile>
     }
@@ -15,7 +16,7 @@
     mat-fab
     extended
     class="add-btn"
-    [ngClass]="{ centered: chartArray.length === 0 }"
+    [ngClass]="{ centered: chartArray().length === 0 }"
     (click)="addChart()"
 >
     <mat-icon>add</mat-icon>

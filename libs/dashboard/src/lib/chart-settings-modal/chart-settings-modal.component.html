@@ -1,17 +1,61 @@
 <h2 mat-dialog-title>Chart settings</h2>
-<mat-dialog-content>
+<mat-dialog-content class="settings-container">
     <form [formGroup]="chartForm">
-        <mat-form-field>
-            <mat-label>First name</mat-label>
-            <input
-                matInput
-                id="first-name"
-                type="text"
-                formControlName="firstName"
-            />
-        </mat-form-field>
+        <div class="row-container">
+            <mat-button-toggle-group
+                name="chartValues"
+                aria-label="chartValues"
+                formControlName="dataTypes"
+                multiple
+            >
+                <mat-button-toggle value="humidity">humidity</mat-button-toggle>
+                <mat-button-toggle value="light">light</mat-button-toggle>
+                <mat-button-toggle value="temperature"
+                    >temperature</mat-button-toggle
+                >
+            </mat-button-toggle-group>
+        </div>
+        <div>
+            <div id="type-chart">Pick type of chart</div>
+            <mat-radio-group
+                formControlName="type"
+                aria-labelledby="type-chart"
+                class="example-radio-group"
+            >
+                @for (type of chatTypes; track $index) {
+                <mat-radio-button class="example-radio-button" [value]="type">{{
+                    type
+                }}</mat-radio-button>
+                }
+            </mat-radio-group>
+        </div>
+        <div class="color-container">
+            <mat-form-field>
+                <mat-label>Stroke color</mat-label>
+                <input
+                    matInput
+                    formControlName="strokeColor"
+                    [ngxMatColorPicker]="picker"
+                />
+                <ngx-mat-color-toggle
+                    matSuffix
+                    [for]="picker"
+                ></ngx-mat-color-toggle>
+                <ngx-mat-color-picker
+                    #picker
+                    [color]="'primary'"
+                ></ngx-mat-color-picker>
+            </mat-form-field>
+        </div>
     </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-    <button mat-raised-button mat-dialog-close>Apply</button>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button
+        mat-raised-button
+        [disabled]="chartForm.invalid"
+        (click)="applySettings()"
+    >
+        Apply
+    </button>
 </mat-dialog-actions>
