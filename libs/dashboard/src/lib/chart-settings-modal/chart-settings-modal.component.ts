@@ -1,13 +1,14 @@
 import {
+    Color,
     MAT_COLOR_FORMATS,
     NGX_MAT_COLOR_FORMATS,
     NgxMatColorPickerModule
 } from '@angular-material-components/color-picker';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatButtonToggleChange, MatButtonToggleModule } from '@angular/material/button-toggle';
 import {
     MatDialogActions,
     MatDialogClose,
@@ -18,6 +19,7 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
+import { rainbowColors } from '@snsrs-web/shared/constants';
 import { ChartSetting } from '@snsrs-web/shared/interfaces';
 
 @Component({
@@ -47,33 +49,61 @@ export class ChartSettingsModalComponent {
     readonly dialogRef = inject(MatDialogRef<ChartSettingsModalComponent>);
     readonly chatTypes = ['line', 'bar'];
 
-    chartForm = this.formBuilder.group({
-        dataTypes: [[''], Validators.required],
-        strokeColor: [''],
-        type: ['', Validators.required]
-    });
+    axies: FormGroup[] = [];
+    prevAxies: string[] = [];
 
     onNoClick() {
         this.dialogRef.close();
     }
 
     applySettings() {
-        console.log(this.chartForm.value);
+        console.log(this.axies.values);
 
-        if (!this.chartForm.value.dataTypes) {
+        if (!this.axies.length) {
             return;
         }
 
-        const charSettingsList: ChartSetting[] =
-            this.chartForm.value.dataTypes?.map((dataType) => {
-                const setting: ChartSetting = {
-                    type: 'line',
-                    dataType
-                };
+        const charSettingsList = this.axies.map((x, idx) => {
+            const setting: ChartSetting = {
+                type: x.controls['type'].value,
+                dataType: this.prevAxies[idx],
+                strokeColor: '#' + x.controls['color'].value?.hex
+            };
+            return setting;
+        });
 
-                return setting;
-            });
+        console.log(charSettingsList);
 
         this.dialogRef.close(charSettingsList);
+    }
+
+    changeChartLines(event: MatButtonToggleChange) {
+        const newAxies: string[] = event.value;
+
+        //adding
+        if (this.prevAxies.length < newAxies.length) {
+            const group = this.formBuilder.group({
+                type: this.formBuilder.control('line'),
+                color: this.formBuilder.control(
+                    new Color(
+                        Math.floor(Math.random() * 255),
+                        Math.floor(Math.random() * 255),
+                        Math.floor(Math.random() * 255)
+                    )
+                )
+            });
+
+            this.axies.push(group);
+            this.prevAxies = newAxies;
+            return;
+        }
+
+        //removing
+        const indexOfDelEl = this.prevAxies.findIndex(
+            (x) => !newAxies.includes(x)
+        );
+
+        this.axies = this.axies.filter((_, idx) => idx !== indexOfDelEl);
+        this.prevAxies = newAxies;
     }
 }

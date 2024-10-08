@@ -41,15 +41,13 @@ export class DashboardComponent implements OnInit {
     addChart() {
         const dialogRef = this.dialog.open(ChartSettingsModalComponent, {
             height: '50%',
-            width: '40%'
+            minWidth: '40%'
         });
 
         dialogRef.afterClosed().subscribe((chartSetting: ChartSetting[]) => {
             if (!chartSetting) {
                 return;
             }
-
-            console.log(chartSetting);
 
             const seriesOfChart = chartSetting.map((x) => {
                 return {
@@ -63,7 +61,7 @@ export class DashboardComponent implements OnInit {
                         ? { fill: x.strokeColor || 'red' }
                         : {
                               marker: {
-                                  fill: 'purple'
+                                  fill: x.strokeColor || 'green'
                               }
                           })
                 };

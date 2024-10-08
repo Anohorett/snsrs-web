@@ -1,15 +1,13 @@
 .settings-container > form {
     height: 100%;
-    border: 1px dashed red;
 }
 
 .row-container {
-    border: 1px dashed orange;
     display: flex;
     justify-content: center;
 }
 
-.color-container {
-    padding: 16px;
-    border: 1px dashed yellow;
+.row-tile {
+    padding: 8px;
+    align-content: center;
 }

@@ -1,26 +1,27 @@
 <h2 mat-dialog-title>Chart settings</h2>
 <mat-dialog-content class="settings-container">
-    <form [formGroup]="chartForm">
-        <div class="row-container">
-            <mat-button-toggle-group
-                name="chartValues"
-                aria-label="chartValues"
-                formControlName="dataTypes"
-                multiple
+    <div class="row-container">
+        <mat-button-toggle-group
+            name="chartValues"
+            aria-label="chartValues"
+            multiple
+            (change)="changeChartLines($event)"
+        >
+            <mat-button-toggle value="humidity">humidity</mat-button-toggle>
+            <mat-button-toggle value="light">light</mat-button-toggle>
+            <mat-button-toggle value="temperature"
+                >temperature</mat-button-toggle
             >
-                <mat-button-toggle value="humidity">humidity</mat-button-toggle>
-                <mat-button-toggle value="light">light</mat-button-toggle>
-                <mat-button-toggle value="temperature"
-                    >temperature</mat-button-toggle
-                >
-            </mat-button-toggle-group>
-        </div>
-        <div>
-            <div id="type-chart">Pick type of chart</div>
+        </mat-button-toggle-group>
+    </div>
+    @for (axieGroup of axies; track axieGroup; let i = $index;) {
+    <div class="row-container" [formGroup]="axieGroup">
+        <div class="row-tile">{{ prevAxies[i] }}</div>
+        <div class="row-tile">
             <mat-radio-group
+                id="type-{{ i }}"
                 formControlName="type"
                 aria-labelledby="type-chart"
-                class="example-radio-group"
             >
                 @for (type of chatTypes; track $index) {
                 <mat-radio-button class="example-radio-button" [value]="type">{{
@@ -29,12 +30,13 @@
                 }
             </mat-radio-group>
         </div>
-        <div class="color-container">
+        <div class="row-tile">
             <mat-form-field>
-                <mat-label>Stroke color</mat-label>
+                <mat-label id="color-{{ i }}">Color</mat-label>
                 <input
                     matInput
-                    formControlName="strokeColor"
+                    id="color-{{ i }}"
+                    formControlName="color"
                     [ngxMatColorPicker]="picker"
                 />
                 <ngx-mat-color-toggle
@@ -47,13 +49,14 @@
                 ></ngx-mat-color-picker>
             </mat-form-field>
         </div>
-    </form>
+    </div>
+    }
 </mat-dialog-content>
 <mat-dialog-actions>
     <button mat-button (click)="onNoClick()">Cancel</button>
     <button
         mat-raised-button
-        [disabled]="chartForm.invalid"
+        [disabled]="!this.axies.length"
         (click)="applySettings()"
     >
         Apply
