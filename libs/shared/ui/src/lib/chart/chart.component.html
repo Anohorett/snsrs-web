@@ -1,11 +1,8 @@
 @if (isEditMode) {
 <div>
-    <button mat-icon-button
-        class="close-btn">
+    <button mat-icon-button class="close-btn" (click)="closeChart.emit()">
         <mat-icon>close</mat-icon>
     </button>
 </div>
 }
-<ag-charts [options]="chartOptions"
-    style="width: 100%">
-</ag-charts>
+<ag-charts [options]="options()" style="width: 100%"> </ag-charts>
