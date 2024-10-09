@@ -1,0 +1,64 @@
+<h2 mat-dialog-title>Chart settings</h2>
+<mat-dialog-content class="settings-container">
+    <div class="row-container">
+        <mat-button-toggle-group
+            name="chartValues"
+            aria-label="chartValues"
+            multiple
+            (change)="changeChartLines($event)"
+        >
+            <mat-button-toggle value="humidity">humidity</mat-button-toggle>
+            <mat-button-toggle value="light">light</mat-button-toggle>
+            <mat-button-toggle value="temperature"
+                >temperature</mat-button-toggle
+            >
+        </mat-button-toggle-group>
+    </div>
+    @for (axieGroup of axies; track axieGroup; let i = $index;) {
+    <div class="row-container" [formGroup]="axieGroup">
+        <div class="row-tile">{{ prevAxies[i] }}</div>
+        <div class="row-tile">
+            <mat-radio-group
+                id="type-{{ i }}"
+                formControlName="type"
+                aria-labelledby="type-chart"
+            >
+                @for (type of chatTypes; track $index) {
+                <mat-radio-button class="example-radio-button" [value]="type">{{
+                    type
+                }}</mat-radio-button>
+                }
+            </mat-radio-group>
+        </div>
+        <div class="row-tile">
+            <mat-form-field>
+                <mat-label id="color-{{ i }}">Color</mat-label>
+                <input
+                    matInput
+                    id="color-{{ i }}"
+                    formControlName="color"
+                    [ngxMatColorPicker]="picker"
+                />
+                <ngx-mat-color-toggle
+                    matSuffix
+                    [for]="picker"
+                ></ngx-mat-color-toggle>
+                <ngx-mat-color-picker
+                    #picker
+                    [color]="'primary'"
+                ></ngx-mat-color-picker>
+            </mat-form-field>
+        </div>
+    </div>
+    }
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button
+        mat-raised-button
+        [disabled]="!this.axies.length"
+        (click)="applySettings()"
+    >
+        Apply
+    </button>
+</mat-dialog-actions>

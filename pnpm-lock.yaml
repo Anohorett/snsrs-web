@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@angular-material-components/color-picker':
+    specifier: ^16.0.1
+    version: 16.0.1(@angular/cdk@18.2.6)(@angular/common@18.2.6)(@angular/core@18.2.6)(@angular/forms@18.2.6)(@angular/material@18.2.6)(@angular/platform-browser@18.2.6)
   '@angular/animations':
     specifier: ~18.2.0
     version: 18.2.6(@angular/core@18.2.6)
@@ -439,6 +442,25 @@ packages:
       eslint: 9.11.1
       typescript: 5.5.4
     dev: true
+
+  /@angular-material-components/color-picker@16.0.1(@angular/cdk@18.2.6)(@angular/common@18.2.6)(@angular/core@18.2.6)(@angular/forms@18.2.6)(@angular/material@18.2.6)(@angular/platform-browser@18.2.6):
+    resolution: {integrity: sha512-tWIbFzOIEzOhOnz1cwTLsmF2iZzKiuZMCGPXX9vjEe4n0YJD7VR7jJ2lAaMfSyScdEFyNiPlEtFsuQYYmCKK1A==}
+    peerDependencies:
+      '@angular/cdk': ^16.0.0
+      '@angular/common': ^16.0.0
+      '@angular/core': ^16.0.0
+      '@angular/forms': ^16.0.0
+      '@angular/material': ^16.0.0
+      '@angular/platform-browser': ^16.0.0
+    dependencies:
+      '@angular/cdk': 18.2.6(@angular/common@18.2.6)(@angular/core@18.2.6)(rxjs@7.8.1)
+      '@angular/common': 18.2.6(@angular/core@18.2.6)(rxjs@7.8.1)
+      '@angular/core': 18.2.6(rxjs@7.8.1)(zone.js@0.14.10)
+      '@angular/forms': 18.2.6(@angular/common@18.2.6)(@angular/core@18.2.6)(@angular/platform-browser@18.2.6)(rxjs@7.8.1)
+      '@angular/material': 18.2.6(@angular/animations@18.2.6)(@angular/cdk@18.2.6)(@angular/common@18.2.6)(@angular/core@18.2.6)(@angular/forms@18.2.6)(@angular/platform-browser@18.2.6)(rxjs@7.8.1)
+      '@angular/platform-browser': 18.2.6(@angular/animations@18.2.6)(@angular/common@18.2.6)(@angular/core@18.2.6)
+      tslib: 2.7.0
+    dev: false
 
   /@angular/animations@18.2.6(@angular/core@18.2.6):
     resolution: {integrity: sha512-vy9wy+Q9beiRxkEO8wNxFQ63AqAujGvk8AUHepxxIT7QNNc512TNKz8uH+feWDPO38Dm2obwYQHMGzs3WO7pUA==}

@@ -1,15 +1,25 @@
 <mat-grid-list cols="4" rowHeight="250px">
-    <mat-grid-tile [colspan]="3" [rowspan]="2">
+    @for (chart of chartArray(); track chart; let idx = $index) {
+    <mat-grid-tile [colspan]="chart.tile.cols" [rowspan]="chart.tile.rows">
         <lib-chart
-            [chartOptions]="chartOptions"
+            [chartOptions]="chart.options"
+            [datas]="sensorsStore.sensorsForThePeriod()"
             [isEditMode]="sensorsStore.isEditMode()"
+            (closeChart)="closeChart(idx)"
         ></lib-chart>
     </mat-grid-tile>
-    @for (tile of tiles; track tile) {
-    <mat-grid-tile
-        [colspan]="tile.cols"
-        [rowspan]="tile.rows"
-        [style.background]="tile.color"
-    ></mat-grid-tile>
-    } <mat-grid-tile [colspan]="1" [rowspan]="1"> add chart </mat-grid-tile>
+    }
 </mat-grid-list>
+
+@if (chartArray.length < MAX_CHARTS_LENGHT) {
+<button
+    mat-fab
+    extended
+    class="add-btn"
+    [ngClass]="{ centered: chartArray().length === 0 }"
+    (click)="addChart()"
+>
+    <mat-icon>add</mat-icon>
+    Chart
+</button>
+}
