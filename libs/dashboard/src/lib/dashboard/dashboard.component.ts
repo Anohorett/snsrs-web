@@ -68,7 +68,7 @@ export class DashboardComponent implements OnInit {
             });
 
             const chartOptions: AgChartOptions = {
-                data: [...this.sensorsStore.sensorsData()],
+                data: [...this.sensorsStore.sensorsForThePeriod()],
 
                 // for avoid type error with passing arrays of other objects
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any

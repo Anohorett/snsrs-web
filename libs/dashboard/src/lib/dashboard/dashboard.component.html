@@ -3,8 +3,8 @@
     <mat-grid-tile [colspan]="chart.tile.cols" [rowspan]="chart.tile.rows">
         <lib-chart
             [chartOptions]="chart.options"
+            [datas]="sensorsStore.sensorsForThePeriod()"
             [isEditMode]="sensorsStore.isEditMode()"
-            [datas]="sensorsStore.sensorsData()"
             (closeChart)="closeChart(idx)"
         ></lib-chart>
     </mat-grid-tile>

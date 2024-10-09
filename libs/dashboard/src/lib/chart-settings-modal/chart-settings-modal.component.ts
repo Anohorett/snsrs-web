@@ -19,7 +19,6 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
-import { rainbowColors } from '@snsrs-web/shared/constants';
 import { ChartSetting } from '@snsrs-web/shared/interfaces';
 
 @Component({
@@ -57,8 +56,6 @@ export class ChartSettingsModalComponent {
     }
 
     applySettings() {
-        console.log(this.axies.values);
-
         if (!this.axies.length) {
             return;
         }
@@ -71,8 +68,6 @@ export class ChartSettingsModalComponent {
             };
             return setting;
         });
-
-        console.log(charSettingsList);
 
         this.dialogRef.close(charSettingsList);
     }

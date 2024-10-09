@@ -1,5 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, effect, EventEmitter, input, Input, Output } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    computed,
+    effect,
+    EventEmitter,
+    input,
+    Input,
+    model,
+    Output,
+    Signal
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { SensorsData } from '@snsrs-web/data-access/interfaces';
@@ -26,9 +37,8 @@ export class ChartComponent {
 
     datas = input<SensorsData[]>();
 
-    constructor() {
-        effect(() => {
-            console.log(`The current count is: ${this.datas()}`);
-        });
-    }
+    options: Signal<AgChartOptions> = computed(() => ({
+        ...this.chartOptions(),
+        ...{ data: this.datas() }
+    }));
 }

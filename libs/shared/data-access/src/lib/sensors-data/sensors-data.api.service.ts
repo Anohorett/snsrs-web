@@ -14,18 +14,18 @@ export class SensorsDataApiService {
 
     private generateFakeSensorsData(): SensorsData[] {
         const monthNameList = [
-            'Jan',
-            'Feb',
-            'Mar',
-            'Apr',
-            'May',
-            'Jun',
-            'Jul',
-            'Aug',
-            'Sep',
-            'Oct',
-            'Nov',
-            'Dec'
+            'Wed Jan 03 2024 00:00:00 GMT+0300',
+            'Thu Feb 01 2024 00:00:00 GMT+0300',
+            'Fri Mar 01 2024 00:00:00 GMT+0300',
+            'Mon Apr 01 2024 00:00:00 GMT+0300 ',
+            'Sat May 11 2024 00:00:00 GMT+0300',
+            'Fri Jun 07 2024 00:00:00 GMT+0300',
+            'Tue Jul 23 2024 00:00:00 GMT+0300',
+            'Thu Aug 15 2024 00:00:00 GMT+0300',
+            'Fri Sep 27 2024 00:00:00 GMT+0300',
+            'Wed Oct 09 2024 00:00:00 GMT+0300',
+            'Fri Nov 08 2024 00:00:00 GMT+0300',
+            'Tue Dec 31 2024 00:00:00 GMT+0300'
         ];
         const data: SensorsData[] = [];
         for (let i = 0; i < 12; i++) {
